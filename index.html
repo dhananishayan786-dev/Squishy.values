@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Squishy Values</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f0ff;
+      margin: 0;
+      color: #222;
+    }
+    header {
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 25px auto;
+      padding: 15px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px #0002;
+    }
+    input, select, button {
+      padding: 11px;
+      margin: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #8b5cf6;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      opacity: 0.85;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    .trade {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    .result {
+      text-align: center;
+      padding: 15px;
+      margin-top: 15px;
+      border-radius: 10px;
+      background: #eee;
+      font-weight: bold;
+    }
+    @media(max-width:600px) {
+      .trade {
+        grid-template-columns: 1fr;
+      }
+      table {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Squishy Values</h1>
+  <p>Values • Demand • Popularity • Trade Calculator</p>
+</header>
+<div class="container">
+  <div class="card">
+    <h2>Value List</h2>
+    <input
+      id="search"
+      placeholder="Search squishies..."
+      oninput="showValues()"
+    >
+    <table>
+      <thead>
+        <tr>
+          <th>Squishy</th>
+          <th>Value</th>
+          <th>Demand</th>
+          <th>Popularity</th>
+        </tr>
+      </thead>
+      <tbody id="valueList"></tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h2>Trade Calculator</h2>
+    <div class="trade">
+      <div>
+        <h3>Your Items</h3>
+        <select id="yourItem"></select>
+        <button onclick="addYour()">Add</button>
+        <ul id="yourList"></ul>
+        <b>Total: <span id="yourTotal">0</span></b>
+      </div>
+      <div>
+        <h3>Their Items</h3>
+        <select id="theirItem"></select>
+        <button onclick="addTheir()">Add</button>
+        <ul id="theirList"></ul>
+        <b>Total: <span id="theirTotal">0</span></b>
+      </div>
+    </div>
+    <div class="result" id="result">
+      Add items to calculate the trade
+    </div>
+  </div>
+</div>
+<script>
+const items = [
+  {name:"Needoh",value:100,demand:"High",popularity:"High"},
+  {name:"Gummy Bear Squishy",value:85,demand:"High",popularity:"High"},
+  {name:"Mochi Cat",value:75,demand:"High",popularity:"High"},
+  {name:"Kawaii Donut",value:70,demand:"Medium",popularity:"High"},
+  {name:"Strawberry Milk",value:65,demand:"Medium",popularity:"High"},
+  {name:"Cloud Squishy",value:60,demand:"Medium",popularity:"High"},
+  {name:"Panda Bun",value:58,demand:"Medium",popularity:"High"},
+  {name:"Avocado Toast",value:55,demand:"High",popularity:"Medium"},
+  {name:"Axolotl Squishy",value:52,demand:"High",popularity:"High"},
+  {name:"Cinnabun Squishy",value:50,demand:"Medium",popularity:"High"},
+  {name:"Rainbow Cake",value:48,demand:"Medium",popularity:"Medium"},
+  {name:"Chocolate Donut",value:46,demand:"Medium",popularity:"High"},
+  {name:"Blueberry Muffin",value:44,demand:"Medium",popularity:"Medium"},
+  {name:"Frog Mochi",value:42,demand:"High",popularity:"High"},
+  {name:"Boba Cup",value:40,demand:"High",popularity:"High"},
+  {name:"Duckie Squishy",value:38,demand:"Medium",popularity:"High"},
+  {name:"Pink Bunny",value:36,demand:"Medium",popularity:"Medium"},
+  {name:"Cat Paw",value:35,demand:"High",popularity:"High"},
+  {name:"Puppy Squish",value:34,demand:"Medium",popularity:"Medium"},
+  {name:"Turtle Mochi",value:33,demand:"Medium",popularity:"Medium"},
+  {name:"Off Brand Needoh",value:30,demand:"Low",popularity:"High"},
+  {name:"Definitely Not Needoh",value:29,demand:"Low",popularity:"Medium"},
+  {name:"Needoh From The Dollar Store",value:27,demand:"Low",popularity:"High"},
+  {name:"Fake Needoh Blob",value:25,demand:"Low",popularity:"Medium"},
+  {name:"Totally Real Needoh",value:24,demand:"Low",popularity:"High"},
+  {name:"Bootleg Gummy",value:23,demand:"Low",popularity:"Medium"},
+  {name:"Off Brand Mochi",value:22,demand:"Low",popularity:"Medium"},
+  {name:"Knockoff Cat Paw",value:21,demand:"Low",popularity:"High"},
+  {name:"Fake Boba Squish",value:20,demand:"Low",popularity:"Medium"},
+  {name:"Definitely Original Squish",value:19,demand:"Low",popularity:"High"},
+  {name:"Watermelon Slice",value:32,demand:"Medium",popularity:"Medium"},
+  {name:"Pineapple Squish",value:31,demand:"Medium",popularity:"Medium"},
+  {name:"Peach Ring",value:30,demand:"Medium",popularity:"Medium"},
+  {name:"Orange Slice",value:28,demand:"Low",popularity:"Medium"},
+  {name:"Lemon Mochi",value:26,demand:"Low",popularity:"Medium"},
+  {name:"Grape Jelly",value:25,demand:"Medium",popularity:"Medium"},
+  {name:"Cherry Pop",value:24,demand:"Medium",popularity:"Medium"},
+  {name:"Blue Raspberry",value:23,demand:"Low",popularity:"Medium"},
+  {name:"Apple Slice",value:22,demand:"Low",popularity:"Medium"},
+  {name:"Mango Squish",value:21,demand:"Medium",popularity:"Medium"},
+  {name:"Galaxy Star",value:45,demand:"High",popularity:"High"},
+  {name:"Moon Mochi",value:40,demand:"Medium",popularity:"High"},
+  {name:"Sun Squish",value:35,demand:"Medium",popularity:"Medium"},
+  {name:"Cloudy Star",value:34,demand:"Medium",popularity:"Medium"},
+  {name:"Rainbow Star",value:33,demand:"High",popularity:"High"},
+  {name:"Purple Planet",value:31,demand:"Medium",popularity:"Medium"},
+  {name:"Cosmic Blob",value:29,demand:"Low",popularity:"High"},
+  {name:"Alien Squish",value:28,demand:"Medium",popularity:"High"},
+  {name:"Rocket Mochi",value:26,demand:"Low",popularity:"Medium"},
+  {name:"Space Slime",value:25,demand:"Low",popularity:"Medium"},
+  {name:"Sleepy Cat",value:39,demand:"High",popularity:"High"},
+  {name:"Sleepy Bear",value:37,demand:"Medium",popularity:"High"},
+  {name:"Sleepy Bunny",value:35,demand:"Medium",popularity:"High"},
+  {name:"Sleepy Frog",value:34,demand:"High",popularity:"High"},
+  {name:"Sleepy Duck",value:32,demand:"Medium",popularity:"Medium"},
+  {name:"Sleepy Panda",value:30,demand:"Medium",popularity:"High"},
+  {name:"Sleepy Axolotl",value:29,demand:"High",popularity:"High"},
+  {name:"Sleepy Puppy",value:27,demand:"Medium",popularity:"Medium"},
+  {name:"Sleepy Koala",value:25,demand:"Low",popularity:"Medium"},
+  {name:"Sleepy Penguin",value:24,demand:"Low",popularity:"Medium"},
+  {name:"Strawberry Bear",value:38,demand:"High",popularity:"High"},
+  {name:"Blueberry Bear",value:36,demand:"Medium",popularity:"High"},
+  {name:"Chocolate Bear",value:34,demand:"Medium",popularity:"High"},
+  {name:"Vanilla Bear",value:31,demand:"Medium",popularity:"Medium"},
+  {name:"Mint Bear",value:30,demand:"Low",popularity:"Medium"},
+  {name:"Caramel Bear",value:29,demand:"Medium",popularity:"Medium"},
+  {name:"Cotton Candy Bear",value:28,demand:"High",popularity:"High"},
+  {name:"Grape Bear",value:26,demand:"Low",popularity:"Medium"},
+  {name:"Lemon Bear",value:25,demand:"Low",popularity:"Medium"},
+  {name:"Watermelon Bear",value:24,demand:"Medium",popularity:"Medium"},
+  {name:"Pink Heart",value:35,demand:"High",popularity:"High"},
+  {name:"Blue Heart",value:33,demand:"Medium",popularity:"High"},
+  {name:"Purple Heart",value:32,demand:"High",popularity:"High"},
+  {name:"Red Heart",value:30,demand:"High",popularity:"High"},
+  {name:"Rainbow Heart",value:29,demand:"High",popularity:"High"},
+  {name:"Glitter Heart",value:27,demand:"Medium",popularity:"High"},
+  {name:"Tiny Heart",value:24,demand:"Low",popularity:"Medium"},
+  {name:"Melty Heart",value:23,demand:"Low",popularity:"Medium"},
+  {name:"Cloud Heart",value:22,demand:"Medium",popularity:"Medium"},
+  {name:"Smiley Heart",value:20,demand:"Low",popularity:"High"},
+  {name:"Froggo",value:28,demand:"High",popularity:"High"},
+  {name:"Boba Frog",value:27,demand:"High",popularity:"High"},
+  {name:"Strawberry Frog",value:26,demand:"Medium",popularity:"High"},
+  {name:"Pizza Frog",value:25,demand:"Medium",popularity:"High"},
+  {name:"Mushroom Frog",value:24,demand:"High",popularity:"High"},
+  {name:"Tiny Frog",value:22,demand:"Medium",popularity:"Medium"},
+  {name:"Derpy Frog",value:21,demand:"High",popularity:"High"},
+  {name:"Cursed Frog",value:20,demand:"Medium",popularity:"High"},
+  {name:"Off Brand Frog",value:18,demand:"Low",popularity:"Medium"},
+  {name:"Definitely A Frog",value:15,demand:"Low",popularity:"High"},
+  {name:"Pizza Slice",value:34,demand:"High",popularity:"High"},
+  {name:"Burger Squish",value:32,demand:"Medium",popularity:"High"},
+  {name:"Fries Squish",value:30,demand:"High",popularity:"High"},
+  {name:"Taco Squish",value:28,demand:"Medium",popularity:"High"},
+  {name:"Hotdog Squish",value:25,demand:"Medium",popularity:"Medium"},
+  {name:"Sushi Squish",value:24,demand:"High",popularity:"High"},
+  {name:"Ramen Squish",value:23,demand:"Medium",popularity:"High"},
+  {name:"Waffle Squish",value:22,demand:"Medium",popularity:"Medium"},
+  {name:"Pancake Squish",value:21,demand:"Low",popularity:"Medium"},
+  {name:"Off Brand Pizza",value:16,demand:"Low",popularity:"Medium"}
+];
+let yourItems = [];
+let theirItems = [];
+function showValues() {
+  const search =
+    document.getElementById("search").value.toLowerCase();
+  const list =
+    document.getElementById("valueList");
+  list.innerHTML = "";
+  items
+    .filter(item =>
+      item.name.toLowerCase().includes(search)
+    )
+    .forEach(item => {
+      list.innerHTML += `
+        <tr>
+          <td>${item.name}</td>
+          <td>${item.value}</td>
+          <td>${item.demand}</td>
+          <td>${item.popularity}</td>
+        </tr>
+      `;
+    });
+}
+function loadItems() {
+  const your =
+    document.getElementById("yourItem");
+  const their =
+    document.getElementById("theirItem");
+  items.forEach((item, index) => {
+    your.innerHTML +=
+      `<option value="${index}">
+        ${item.name} — ${item.value}
+      </option>`;
+    their.innerHTML +=
+      `<option value="${index}">
+        ${item.name} — ${item.value}
+      </option>`;
+  });
+}
+function addYour() {
+  const index =
+    document.getElementById("yourItem").value;
+  yourItems.push(items[index]);
+  update();
+}
+function addTheir() {
+  const index =
+    document.getElementById("theirItem").value;
+  theirItems.push(items[index]);
+  update();
+}
+function update() {
+  let yourTotal = 0;
+  let theirTotal = 0;
+  const yourList =
+    document.getElementById("yourList");
+  const theirList =
+    document.getElementById("theirList");
+  yourList.innerHTML = "";
+  theirList.innerHTML = "";
+  yourItems.forEach(item => {
+    yourTotal += item.value;
+    yourList.innerHTML +=
+      `<li>${item.name} (${item.value})</li>`;
+  });
+  theirItems.forEach(item => {
+    theirTotal += item.value;
+    theirList.innerHTML +=
+      `<li>${item.name} (${item.value})</li>`;
+  });
+  document.getElementById("yourTotal").textContent =
+    yourTotal;
+  document.getElementById("theirTotal").textContent =
+    theirTotal;
+  const result =
+    document.getElementById("result");
+  if (yourItems.length === 0 || theirItems.length === 0) {
+    result.textContent =
+      "Add items to calculate the trade";
+  }
+  else if (yourTotal > theirTotal) {
+    result.textContent =
+      "W for you";
+  }
+  else if (yourTotal < theirTotal) {
+    result.textContent =
+      "L for you";
+  }
+  else {
+    result.textContent =
+      "Fair trade";
+  }
+}
+showValues();
+loadItems();
+update();
+</script>
+</body>
+</html>
