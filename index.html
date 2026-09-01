@@ -1,227 +1,1165 @@
-let items = [
-  {name:"50th Golden Nice Cube",value:1500,demand:"Extreme",popularity:"Extreme"},
-  {name:"Golden Mystery Cube",value:1000,demand:"Extreme",popularity:"Extreme"},
-  {name:"Golden Galaxy Cube",value:900,demand:"Extreme",popularity:"Extreme"},
-  {name:"Golden Giant Nice Cube",value:800,demand:"Extreme",popularity:"Extreme"},
-  {name:"Limited Crystal Cube",value:700,demand:"Very High",popularity:"Very High"},
-  {name:"Golden Rainbow Cube",value:650,demand:"Very High",popularity:"Very High"},
-  {name:"Golden Mini Nice Cube",value:500,demand:"Very High",popularity:"Very High"},
-  {name:"Golden Cloud Cube",value:450,demand:"Very High",popularity:"Very High"},
-  {name:"Rare Aurora Cube",value:400,demand:"Very High",popularity:"High"},
-  {name:"Rare Giant Galaxy",value:225,demand:"Very High",popularity:"High"},
-  {name:"Rare Giant Rainbow",value:210,demand:"Very High",popularity:"High"},
-  {name:"Rare Giant Cloud",value:200,demand:"Very High",popularity:"High"},
-  {name:"Rare Giant Axolotl",value:190,demand:"High",popularity:"High"},
-  {name:"Giant Needoh",value:180,demand:"Extreme",popularity:"Extreme"},
-  {name:"Rare Giant Frog",value:175,demand:"High",popularity:"High"},
-  {name:"Giant Cloud Needoh",value:170,demand:"Extreme",popularity:"High"},
-  {name:"Giant Rainbow Needoh",value:165,demand:"High",popularity:"High"},
-  {name:"Giant Galaxy Needoh",value:160,demand:"High",popularity:"High"},
-  {name:"RMS Giant Dumpling",value:150,demand:"Extreme",popularity:"Extreme"},
-  {name:"Giant Strawberry Needoh",value:150,demand:"High",popularity:"High"},
-  {name:"Giant Grape Needoh",value:145,demand:"High",popularity:"High"},
-  {name:"Giant Moon Needoh",value:140,demand:"High",popularity:"High"},
-  {name:"Giant Aurora Needoh",value:135,demand:"High",popularity:"High"},
-  {name:"Giant Ocean Needoh",value:130,demand:"Medium",popularity:"High"},
-  {name:"Giant Crystal Needoh",value:125,demand:"High",popularity:"High"},
-  {name:"Rare Mini Galaxy",value:125,demand:"Very High",popularity:"High"},
-  {name:"RMS Dumpling",value:120,demand:"High",popularity:"High"},
-  {name:"Smushers Giant Dumpling",value:110,demand:"High",popularity:"High"},
-  {name:"Giant Mochi Cat",value:110,demand:"High",popularity:"High"},
-  {name:"Rare Mini Aurora",value:110,demand:"High",popularity:"High"},
-  {name:"Giant Axolotl",value:105,demand:"High",popularity:"High"},
-  {name:"Needoh",value:100,demand:"High",popularity:"High"},
-  {name:"RMS Red Dumpling",value:100,demand:"High",popularity:"High"},
-  {name:"Giant Gummy Bear",value:100,demand:"High",popularity:"High"},
-  {name:"Rare Mini Crystal",value:100,demand:"High",popularity:"High"},
-  {name:"Giant Magic Cloud",value:100,demand:"High",popularity:"High"},
-  {name:"Cloud Needoh",value:95,demand:"High",popularity:"High"},
-  {name:"RMS Pink Dumpling",value:95,demand:"High",popularity:"High"},
-  {name:"Giant Panda Bun",value:95,demand:"High",popularity:"High"},
-  {name:"Rare Small Rainbow",value:95,demand:"High",popularity:"High"},
-  {name:"Dreamy Needoh",value:90,demand:"High",popularity:"High"},
-  {name:"RMS Blue Dumpling",value:90,demand:"High",popularity:"High"},
-  {name:"Smushers Dumpling",value:90,demand:"High",popularity:"High"},
-  {name:"Giant Bunny",value:90,demand:"High",popularity:"High"},
-  {name:"Rare Small Cloud",value:90,demand:"High",popularity:"High"},
-  {name:"Rainbow Needoh",value:88,demand:"High",popularity:"High"},
-  {name:"Giant Boba",value:88,demand:"High",popularity:"High"},
-  {name:"Galaxy Needoh",value:85,demand:"High",popularity:"High"},
-  {name:"RMS Purple Dumpling",value:85,demand:"Medium",popularity:"High"},
-  {name:"Gummy Bear Squishy",value:85,demand:"High",popularity:"High"},
-  {name:"Giant Frog",value:85,demand:"High",popularity:"High"},
-  {name:"RMS Strawberry Dumpling",value:82,demand:"High",popularity:"High"},
-  {name:"Giant Bear",value:82,demand:"High",popularity:"High"},
-  {name:"Grape Needoh",value:80,demand:"High",popularity:"High"},
-  {name:"Strawberry Needoh",value:78,demand:"High",popularity:"High"},
-  {name:"RMS Green Dumpling",value:78,demand:"Medium",popularity:"Medium"},
-  {name:"Starry Needoh",value:75,demand:"Medium",popularity:"High"},
-  {name:"Mochi Cat",value:75,demand:"High",popularity:"High"},
-  {name:"RMS Yellow Dumpling",value:74,demand:"Medium",popularity:"Medium"},
-  {name:"Blueberry Needoh",value:72,demand:"Medium",popularity:"High"},
-  {name:"Moon Needoh",value:70,demand:"Medium",popularity:"High"},
-  {name:"RMS Chocolate Dumpling",value:70,demand:"High",popularity:"Medium"},
-  {name:"Smushers Cloud",value:70,demand:"High",popularity:"High"},
-  {name:"Kawaii Donut",value:70,demand:"Medium",popularity:"High"},
-  {name:"Aurora Needoh",value:68,demand:"High",popularity:"High"},
-  {name:"Ocean Needoh",value:65,demand:"Medium",popularity:"High"},
-  {name:"RMS Mystery Dumpling",value:65,demand:"Medium",popularity:"High"},
-  {name:"Strawberry Milk",value:65,demand:"Medium",popularity:"High"},
-  {name:"Sunset Needoh",value:62,demand:"Medium",popularity:"High"},
-  {name:"Midnight Needoh",value:60,demand:"Medium",popularity:"High"},
-  {name:"Sushi Dumpling",value:60,demand:"Medium",popularity:"High"},
-  {name:"Cloud Squishy",value:60,demand:"Medium",popularity:"High"},
-  {name:"Pastel Needoh",value:58,demand:"High",popularity:"High"},
-  {name:"Boba Dumpling",value:58,demand:"High",popularity:"High"},
-  {name:"Panda Bun",value:58,demand:"Medium",popularity:"High"},
-  {name:"Cotton Candy Needoh",value:55,demand:"High",popularity:"High"},
-  {name:"Smushers Sushi",value:55,demand:"Medium",popularity:"High"},
-  {name:"Cat Dumpling",value:55,demand:"High",popularity:"High"},
-  {name:"Avocado Toast",value:55,demand:"High",popularity:"Medium"},
-  {name:"Small Needoh",value:55,demand:"High",popularity:"High"},
-  {name:"Crystal Needoh",value:52,demand:"High",popularity:"Medium"},
-  {name:"Smushers Boba",value:52,demand:"High",popularity:"High"},
-  {name:"Frog Dumpling",value:52,demand:"Medium",popularity:"High"},
-  {name:"Axolotl Squishy",value:52,demand:"High",popularity:"High"},
-  {name:"Small Cloud Needoh",value:52,demand:"High",popularity:"High"},
-  {name:"Smushers Cat",value:50,demand:"High",popularity:"High"},
-  {name:"Bunny Dumpling",value:50,demand:"Medium",popularity:"High"},
-  {name:"Cinnabun Squishy",value:50,demand:"Medium",popularity:"High"},
-  {name:"Sleepy Cat",value:50,demand:"High",popularity:"High"},
-  {name:"Small Rainbow Needoh",value:49,demand:"High",popularity:"High"},
-  {name:"Lava Needoh",value:48,demand:"Medium",popularity:"Medium"},
-  {name:"Panda Dumpling",value:48,demand:"Medium",popularity:"High"},
-  {name:"Rainbow Cake",value:48,demand:"Medium",popularity:"Medium"},
-  {name:"Sleepy Bear",value:48,demand:"Medium",popularity:"High"},
-  {name:"Smushers Frog",value:47,demand:"Medium",popularity:"High"},
-  {name:"Small Galaxy Needoh",value:47,demand:"High",popularity:"High"},
-  {name:"Chocolate Donut",value:46,demand:"Medium",popularity:"High"},
-  {name:"Sleepy Bunny",value:46,demand:"Medium",popularity:"High"},
-  {name:"Smushers Bunny",value:45,demand:"Medium",popularity:"High"},
-  {name:"Bear Dumpling",value:45,demand:"Medium",popularity:"Medium"},
-  {name:"Strawberry Bear",value:45,demand:"High",popularity:"High"},
-  {name:"Mini Needoh",value:45,demand:"High",popularity:"High"},
-  {name:"Galaxy Star",value:45,demand:"High",popularity:"High"},
-  {name:"Blueberry Muffin",value:44,demand:"Medium",popularity:"Medium"},
-  {name:"Sleepy Frog",value:44,demand:"High",popularity:"High"},
-  {name:"Cotton Candy Bear",value:44,demand:"High",popularity:"High"},
-  {name:"Small Grape Needoh",value:44,demand:"Medium",popularity:"High"},
-  {name:"Blueberry Bear",value:43,demand:"Medium",popularity:"High"},
-  {name:"Mini Cloud Needoh",value:43,demand:"High",popularity:"High"},
-  {name:"Smushers Panda",value:42,demand:"Medium",popularity:"Medium"},
-  {name:"Duck Dumpling",value:42,demand:"Medium",popularity:"Medium"},
-  {name:"Frog Mochi",value:42,demand:"High",popularity:"High"},
-  {name:"Sleepy Duck",value:42,demand:"Medium",popularity:"Medium"},
-  {name:"Small Strawberry Needoh",value:42,demand:"High",popularity:"High"},
-  {name:"Small Axolotl",value:42,demand:"High",popularity:"High"},
-  {name:"Rainbow Cloud",value:42,demand:"High",popularity:"High"},
-  {name:"Chocolate Bear",value:41,demand:"Medium",popularity:"High"},
-  {name:"Mini Rainbow Needoh",value:41,demand:"High",popularity:"High"},
-  {name:"Smushers Axolotl",value:40,demand:"High",popularity:"High"},
-  {name:"Axolotl Dumpling",value:40,demand:"High",popularity:"High"},
-  {name:"Boba Cup",value:40,demand:"High",popularity:"High"},
-  {name:"Sleepy Panda",value:40,demand:"Medium",popularity:"High"},
-  {name:"Pink Heart",value:40,demand:"High",popularity:"High"},
-  {name:"Small Moon Needoh",value:40,demand:"Medium",popularity:"High"},
-  {name:"Small Mochi Cat",value:40,demand:"High",popularity:"High"},
-  {name:"Moon Mochi",value:40,demand:"Medium",popularity:"High"},
-  {name:"Pastel Cloud",value:40,demand:"High",popularity:"High"},
-  {name:"Vanilla Bear",value:39,demand:"Medium",popularity:"Medium"},
-  {name:"Mini Grape Needoh",value:39,demand:"Medium",popularity:"High"},
-  {name:"Smushers Mushroom",value:38,demand:"Medium",popularity:"High"},
-  {name:"Mushroom Dumpling",value:38,demand:"High",popularity:"High"},
-  {name:"Duckie Squishy",value:38,demand:"Medium",popularity:"High"},
-  {name:"Sleepy Axolotl",value:38,demand:"High",popularity:"High"},
-  {name:"Blue Heart",value:38,demand:"Medium",popularity:"High"},
-  {name:"Mini Strawberry Needoh",value:38,demand:"High",popularity:"High"},
-  {name:"Small Blueberry Needoh",value:38,demand:"Medium",popularity:"Medium"},
-  {name:"Blue Cloud",value:38,demand:"Medium",popularity:"High"},
-  {name:"Mint Bear",value:37,demand:"Low",popularity:"Medium"},
-  {name:"Purple Heart",value:37,demand:"High",popularity:"High"},
-  {name:"Mini Galaxy Needoh",value:37,demand:"High",popularity:"High"},
-  {name:"Pink Cloud",value:37,demand:"High",popularity:"High"},
-  {name:"Pink Bunny",value:36,demand:"Medium",popularity:"Medium"},
-  {name:"Sleepy Puppy",value:36,demand:"Medium",popularity:"Medium"},
-  {name:"Red Heart",value:36,demand:"High",popularity:"High"},
-  {name:"Mini Axolotl",value:36,demand:"High",popularity:"High"},
-  {name:"Small Aurora Needoh",value:36,demand:"High",popularity:"High"},
-  {name:"Small Panda Bun",value:36,demand:"Medium",popularity:"High"},
-  {name:"Purple Cloud",value:36,demand:"Medium",popularity:"High"},
-  {name:"Smushers Duck",value:35,demand:"Low",popularity:"Medium"},
-  {name:"Cat Paw",value:35,demand:"High",popularity:"High"},
-  {name:"Caramel Bear",value:35,demand:"Medium",popularity:"Medium"},
-  {name:"Rainbow Heart",value:35,demand:"High",popularity:"High"},
-  {name:"Froggo",value:35,demand:"High",popularity:"High"},
-  {name:"Mini Moon Needoh",value:35,demand:"Medium",popularity:"High"},
-  {name:"Mini Mochi Cat",value:35,demand:"High",popularity:"High"},
-  {name:"Small Gummy Bear",value:35,demand:"Medium",popularity:"High"},
-  {name:"Sun Squish",value:35,demand:"Medium",popularity:"Medium"},
-  {name:"Star Cloud",value:35,demand:"Medium",popularity:"High"},
-  {name:"Puppy Squish",value:34,demand:"Medium",popularity:"Medium"},
-  {name:"Sleepy Koala",value:34,demand:"Low",popularity:"Medium"},
-  {name:"Boba Frog",value:34,demand:"High",popularity:"High"},
-  {name:"Mini Aurora Needoh",value:34,demand:"High",popularity:"High"},
-  {name:"Small Crystal Needoh",value:34,demand:"Medium",popularity:"Medium"},
-  {name:"Small Boba",value:34,demand:"High",popularity:"High"},
-  {name:"Pizza Slice",value:34,demand:"High",popularity:"High"},
-  {name:"Cloudy Star",value:34,demand:"Medium",popularity:"Medium"},
-  {name:"Magic Cloud",value:34,demand:"High",popularity:"High"},
-  {name:"Turtle Mochi",value:33,demand:"Medium",popularity:"Medium"},
-  {name:"Grape Bear",value:33,demand:"Low",popularity:"Medium"},
-  {name:"Glitter Heart",value:33,demand:"Medium",popularity:"High"},
-  {name:"Small Bunny",value:33,demand:"High",popularity:"High"},
-  {name:"Rainbow Star",value:33,demand:"High",popularity:"High"},
-  {name:"Smushers Bear",value:32,demand:"Low",popularity:"Medium"},
-  {name:"Watermelon Slice",value:32,demand:"Medium",popularity:"Medium"},
-  {name:"Sleepy Penguin",value:32,demand:"Low",popularity:"Medium"},
-  {name:"Strawberry Frog",value:32,demand:"Medium",popularity:"High"},
-  {name:"Mini Ocean Needoh",value:32,demand:"Medium",popularity:"Medium"},
-  {name:"Mini Panda Bun",value:32,demand:"Medium",popularity:"High"},
-  {name:"Burger Squish",value:32,demand:"Medium",popularity:"High"},
-  {name:"Sleepy Cloud",value:32,demand:"Medium",popularity:"High"},
-  {name:"Pineapple Squish",value:31,demand:"Medium",popularity:"Medium"},
-  {name:"Lemon Bear",value:31,demand:"Low",popularity:"Medium"},
-  {name:"Mini Boba",value:31,demand:"High",popularity:"High"},
-  {name:"Purple Planet",value:31,demand:"Medium",popularity:"Medium"},
-  {name:"Peach Ring",value:30,demand:"Medium",popularity:"Medium"},
-  {name:"Watermelon Bear",value:30,demand:"Medium",popularity:"Medium"},
-  {name:"Pizza Frog",value:30,demand:"Medium",popularity:"High"},
-  {name:"Mini Crystal Needoh",value:30,demand:"Medium",popularity:"Medium"},
-  {name:"Mini Gummy Bear",value:30,demand:"Medium",popularity:"High"},
-  {name:"Mini Bunny",value:30,demand:"High",popularity:"High"},
-  {name:"Small Frog",value:30,demand:"High",popularity:"High"},
-  {name:"Fries Squish",value:30,demand:"High",popularity:"High"},
-  {name:"Mushroom Frog",value:29,demand:"High",popularity:"High"},
-  {name:"Small Bear",value:29,demand:"Medium",popularity:"High"},
-  {name:"Cosmic Blob",value:29,demand:"Low",popularity:"High"},
-  {name:"Orange Slice",value:28,demand:"Low",popularity:"Medium"},
-  {name:"Mini Frog",value:28,demand:"High",popularity:"High"},
-  {name:"Taco Squish",value:28,demand:"Medium",popularity:"High"},
-  {name:"Alien Squish",value:28,demand:"Medium",popularity:"High"},
-  {name:"Derpy Frog",value:27,demand:"High",popularity:"High"},
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  // NEW ITEMS
-  {name:"Crunchy Butter",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Cream Butter",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Foam Butter",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Blue Butter",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Blue Butter Cream",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Foam Blue Butter",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Butter",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Pink Butter",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Pink Crunchy Butter",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Pink Cream Butter",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Pink Foam Butter",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Pink Needoh Ice Cube",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Blue Needoh Ice Cube",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Purple Needoh Ice Cube",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Giant Iceberg Needoh",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Giant Highland Cow",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Giant Shark",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Giant Butter",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Giant Banana",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Giant Ice Cream",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Giant Strawberry",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Giant Cookie",value:0,demand:"Unknown",popularity:"Unknown"},
-  {name:"Giant Ice",value:0,demand:"Unknown",popularity:"Unknown"}
+<title>Squishy Values</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f1e8;
+  color: #29272b;
+}
+
+/* ================= HEADER ================= */
+
+header {
+  background: #f5f1e8;
+  padding: 22px 18px 18px;
+  text-align: center;
+  border-bottom: 1px solid #ebe5da;
+  position: relative;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -2px;
+}
+
+header p {
+  margin: 7px 0 0;
+  color: #77736f;
+  font-size: 13px;
+}
+
+.menu {
+  position: absolute;
+  left: 18px;
+  top: 22px;
+  font-size: 26px;
+  color: #555;
+}
+
+.signin {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  background: #171619;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 25px;
+  font-size: 14px;
+}
+
+/* ================= CONTAINER ================= */
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px 14px 60px;
+}
+
+/* ================= CARDS ================= */
+
+.card {
+  background: rgba(255,255,255,.5);
+  border: 1px solid white;
+  padding: 20px;
+  margin-bottom: 22px;
+  border-radius: 28px;
+  box-shadow: 0 5px 25px rgba(0,0,0,.04);
+}
+
+.card h2 {
+  text-align: center;
+  margin: 5px 0 18px;
+}
+
+/* ================= SEARCH ================= */
+
+input {
+  width: 100%;
+  padding: 15px 18px;
+  border-radius: 18px;
+  border: 1px solid #ddd5c8;
+  background: #fffaf2;
+  font-size: 15px;
+  outline: none;
+  margin-bottom: 15px;
+}
+
+input:focus {
+  border-color: #ff7378;
+}
+
+/* ================= TABLE ================= */
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255,255,255,.55);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+th {
+  background: #eee8dc;
+  color: #66615d;
+  font-size: 13px;
+}
+
+th, td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #e8e1d6;
+  text-align: left;
+}
+
+td {
+  font-size: 14px;
+}
+
+.rare {
+  font-weight: 800;
+}
+
+/* ================= TRADE AREA ================= */
+
+.trade {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.tradeSide {
+  background: rgba(255,255,255,.5);
+  border: 1px solid white;
+  border-radius: 25px;
+  padding: 15px;
+}
+
+.tradeSide h3 {
+  text-align: center;
+  margin: 5px 0 14px;
+}
+
+/* ================= SELECT ================= */
+
+select {
+  width: calc(100% - 78px);
+  padding: 13px;
+  border-radius: 15px;
+  border: 1px solid #ddd5c8;
+  background: white;
+  font-size: 13px;
+}
+
+/* ================= BUTTON ================= */
+
+button {
+  padding: 13px 16px;
+  border: none;
+  border-radius: 18px;
+  background: #ff6f73;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: .85;
+}
+
+/* ================= ITEMS ================= */
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+}
+
+li {
+  background: white;
+  margin: 6px 0;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 13px;
+}
+
+.itemValue {
+  float: right;
+  font-weight: bold;
+}
+
+.removeBtn {
+  float: right;
+  margin-left: 8px;
+  padding: 2px 7px;
+  background: #ddd;
+  color: #555;
+  border-radius: 50%;
+}
+
+/* ================= TOTAL ================= */
+
+.total {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+#yourTotal {
+  color: #ff6269;
+}
+
+#theirTotal {
+  color: #555;
+}
+
+/* ================= RESULT ================= */
+
+.result {
+  text-align: center;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 25px;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.neutral {
+  background: #eee9df;
+  color: #666;
+}
+
+.win {
+  background: #dff5df;
+  color: #26933b;
+}
+
+.fair {
+  background: #fff0c9;
+  color: #b57b00;
+}
+
+.lose {
+  background: #ffe0e0;
+  color: #d33a3a;
+}
+
+/* ================= TRADE BAR ================= */
+
+.tradeBar {
+  height: 10px;
+  background: #f4c7c7;
+  border-radius: 10px;
+  margin-top: 15px;
+  overflow: hidden;
+}
+
+.tradeBarFill {
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(90deg,#ff8a00,#ff6269);
+  border-radius: 10px;
+  transition: width .3s;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:600px) {
+
+  header {
+    padding-top: 24px;
+  }
+
+  header h1 {
+    font-size: 29px;
+  }
+
+  header p {
+    font-size: 11px;
+  }
+
+  .signin {
+    padding: 10px 17px;
+    font-size: 12px;
+    top: 15px;
+  }
+
+  .menu {
+    font-size: 23px;
+  }
+
+  .container {
+    padding: 12px 10px 40px;
+  }
+
+  .card {
+    border-radius: 25px;
+    padding: 14px;
+  }
+
+  .trade {
+    grid-template-columns: 1fr;
+  }
+
+  select {
+    width: calc(100% - 75px);
+  }
+
+  th, td {
+    padding: 9px 6px;
+  }
+
+  table {
+    font-size: 11px;
+  }
+
+  th:nth-child(4),
+  td:nth-child(4) {
+    display: none;
+  }
+
+  .result {
+    font-size: 17px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="menu">☰</div>
+
+  <h1>Squishy Values</h1>
+
+  <p>
+    300+ Squishies • Values • Demand • Popularity • Trade Calculator
+  </p>
+
+  <div class="signin">Sign In</div>
+</header>
+
+
+<div class="container">
+
+<!-- ================= VALUE LIST ================= -->
+
+<div class="card">
+
+  <h2>Squishy Values</h2>
+
+  <input
+    id="search"
+    type="text"
+    placeholder="Search squishies..."
+    oninput="showValues()"
+  >
+
+  <div class="tableWrap">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>Squishy</th>
+          <th>Value</th>
+          <th>Demand</th>
+          <th>Popularity</th>
+        </tr>
+      </thead>
+
+      <tbody id="valueList"></tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+
+<!-- ================= TRADE CALCULATOR ================= -->
+
+<div class="card">
+
+  <h2>Trade Calculator</h2>
+
+  <div class="trade">
+
+    <!-- YOUR SIDE -->
+
+    <div class="tradeSide">
+
+      <h3>Your Items</h3>
+
+      <select id="yourItem"></select>
+
+      <button onclick="addYour()">Add</button>
+
+      <ul id="yourList"></ul>
+
+      <div class="total">
+        Your Offer:
+        <span id="yourTotal">0</span>
+      </div>
+
+    </div>
+
+
+    <!-- THEIR SIDE -->
+
+    <div class="tradeSide">
+
+      <h3>Their Items</h3>
+
+      <select id="theirItem"></select>
+
+      <button onclick="addTheir()">Add</button>
+
+      <ul id="theirList"></ul>
+
+      <div class="total">
+        Their Offer:
+        <span id="theirTotal">0</span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="tradeBar">
+    <div id="tradeBarFill" class="tradeBarFill"></div>
+  </div>
+
+
+  <div class="result neutral" id="result">
+    Add items to calculate the trade
+  </div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   SQUISHY VALUES
+========================================================= */
+
+const items = [
+
+/* ================= RAREST ================= */
+
+{name:"50th Golden Nice Cube",value:1500,demand:"Extreme",popularity:"Extreme"},
+{name:"Secret Rainbow Cube",value:1200,demand:"Extreme",popularity:"Extreme"},
+{name:"Golden Mystery Cube",value:1000,demand:"Extreme",popularity:"Extreme"},
+{name:"Golden Galaxy Cube",value:900,demand:"Extreme",popularity:"Extreme"},
+{name:"Golden Giant Nice Cube",value:800,demand:"Extreme",popularity:"Extreme"},
+{name:"Limited Crystal Cube",value:700,demand:"Very High",popularity:"Very High"},
+{name:"Golden Rainbow Cube",value:650,demand:"Very High",popularity:"Very High"},
+{name:"Golden Mini Nice Cube",value:500,demand:"Very High",popularity:"Very High"},
+{name:"Golden Cloud Cube",value:450,demand:"Very High",popularity:"Very High"},
+{name:"Rare Aurora Cube",value:400,demand:"Very High",popularity:"High"},
+
+/* ================= RARE GIANTS ================= */
+
+{name:"Rare Giant Galaxy",value:225,demand:"Very High",popularity:"High"},
+{name:"Rare Giant Rainbow",value:210,demand:"Very High",popularity:"High"},
+{name:"Rare Giant Cloud",value:200,demand:"Very High",popularity:"High"},
+{name:"Rare Giant Axolotl",value:190,demand:"High",popularity:"High"},
+{name:"Rare Giant Frog",value:175,demand:"High",popularity:"High"},
+
+/* ================= GIANTS ================= */
+
+{name:"Giant Needoh",value:180,demand:"Extreme",popularity:"Extreme"},
+{name:"Giant Cloud Needoh",value:170,demand:"Extreme",popularity:"High"},
+{name:"Giant Rainbow Needoh",value:165,demand:"High",popularity:"High"},
+{name:"Giant Galaxy Needoh",value:160,demand:"High",popularity:"High"},
+{name:"Giant Strawberry Needoh",value:150,demand:"High",popularity:"High"},
+{name:"Giant Grape Needoh",value:145,demand:"High",popularity:"High"},
+{name:"Giant Moon Needoh",value:140,demand:"High",popularity:"High"},
+{name:"Giant Aurora Needoh",value:135,demand:"High",popularity:"High"},
+{name:"Giant Ocean Needoh",value:130,demand:"Medium",popularity:"High"},
+{name:"Giant Crystal Needoh",value:125,demand:"High",popularity:"High"},
+{name:"Giant Mochi Cat",value:110,demand:"High",popularity:"High"},
+{name:"Giant Axolotl",value:105,demand:"High",popularity:"High"},
+{name:"Giant Gummy Bear",value:100,demand:"High",popularity:"High"},
+{name:"Giant Magic Cloud",value:100,demand:"High",popularity:"High"},
+{name:"Giant Panda Bun",value:95,demand:"High",popularity:"High"},
+{name:"Giant Bunny",value:90,demand:"High",popularity:"High"},
+{name:"Giant Boba",value:88,demand:"High",popularity:"High"},
+{name:"Giant Frog",value:85,demand:"High",popularity:"High"},
+{name:"Giant Bear",value:82,demand:"High",popularity:"High"},
+
+/* ================= RMS ================= */
+
+{name:"RMS Giant Dumpling",value:150,demand:"Extreme",popularity:"Extreme"},
+{name:"RMS Dumpling",value:120,demand:"High",popularity:"High"},
+{name:"RMS Red Dumpling",value:100,demand:"High",popularity:"High"},
+{name:"RMS Pink Dumpling",value:95,demand:"High",popularity:"High"},
+{name:"RMS Blue Dumpling",value:90,demand:"High",popularity:"High"},
+{name:"RMS Purple Dumpling",value:85,demand:"Medium",popularity:"High"},
+{name:"RMS Strawberry Dumpling",value:82,demand:"High",popularity:"High"},
+{name:"RMS Green Dumpling",value:78,demand:"Medium",popularity:"Medium"},
+{name:"RMS Yellow Dumpling",value:74,demand:"Medium",popularity:"Medium"},
+{name:"RMS Chocolate Dumpling",value:70,demand:"High",popularity:"Medium"},
+{name:"RMS Mystery Dumpling",value:65,demand:"Medium",popularity:"High"},
+
+/* ================= NEEDOH ================= */
+
+{name:"Needoh",value:100,demand:"High",popularity:"High"},
+{name:"Cloud Needoh",value:95,demand:"High",popularity:"High"},
+{name:"Dreamy Needoh",value:90,demand:"High",popularity:"High"},
+{name:"Rainbow Needoh",value:88,demand:"High",popularity:"High"},
+{name:"Galaxy Needoh",value:85,demand:"High",popularity:"High"},
+{name:"Grape Needoh",value:80,demand:"High",popularity:"High"},
+{name:"Strawberry Needoh",value:78,demand:"High",popularity:"High"},
+{name:"Starry Needoh",value:75,demand:"Medium",popularity:"High"},
+{name:"Blueberry Needoh",value:72,demand:"Medium",popularity:"High"},
+{name:"Moon Needoh",value:70,demand:"Medium",popularity:"High"},
+{name:"Aurora Needoh",value:68,demand:"High",popularity:"High"},
+{name:"Ocean Needoh",value:65,demand:"Medium",popularity:"High"},
+{name:"Sunset Needoh",value:62,demand:"Medium",popularity:"High"},
+{name:"Midnight Needoh",value:60,demand:"Medium",popularity:"High"},
+{name:"Pastel Needoh",value:58,demand:"High",popularity:"High"},
+{name:"Cotton Candy Needoh",value:55,demand:"High",popularity:"High"},
+{name:"Small Needoh",value:55,demand:"High",popularity:"High"},
+{name:"Crystal Needoh",value:52,demand:"High",popularity:"Medium"},
+{name:"Lava Needoh",value:48,demand:"Medium",popularity:"Medium"},
+
+/* ================= SMUSHERS ================= */
+
+{name:"Smushers Giant Dumpling",value:110,demand:"High",popularity:"High"},
+{name:"Smushers Dumpling",value:90,demand:"High",popularity:"High"},
+{name:"Smushers Cloud",value:70,demand:"High",popularity:"High"},
+{name:"Smushers Sushi",value:55,demand:"Medium",popularity:"High"},
+{name:"Smushers Boba",value:52,demand:"High",popularity:"High"},
+{name:"Smushers Cat",value:50,demand:"High",popularity:"High"},
+{name:"Smushers Frog",value:47,demand:"Medium",popularity:"High"},
+{name:"Smushers Bunny",value:45,demand:"Medium",popularity:"High"},
+{name:"Smushers Panda",value:42,demand:"Medium",popularity:"Medium"},
+{name:"Smushers Axolotl",value:40,demand:"High",popularity:"High"},
+{name:"Smushers Mushroom",value:38,demand:"Medium",popularity:"High"},
+{name:"Smushers Duck",value:35,demand:"Low",popularity:"Medium"},
+{name:"Smushers Bear",value:32,demand:"Low",popularity:"Medium"},
+
+/* ================= DUMPLINGS ================= */
+
+{name:"Sushi Dumpling",value:60,demand:"Medium",popularity:"High"},
+{name:"Boba Dumpling",value:58,demand:"High",popularity:"High"},
+{name:"Cat Dumpling",value:55,demand:"High",popularity:"High"},
+{name:"Frog Dumpling",value:52,demand:"Medium",popularity:"High"},
+{name:"Bunny Dumpling",value:50,demand:"Medium",popularity:"High"},
+{name:"Panda Dumpling",value:48,demand:"Medium",popularity:"High"},
+{name:"Bear Dumpling",value:45,demand:"Medium",popularity:"Medium"},
+{name:"Duck Dumpling",value:42,demand:"Medium",popularity:"Medium"},
+{name:"Axolotl Dumpling",value:40,demand:"High",popularity:"High"},
+{name:"Mushroom Dumpling",value:38,demand:"High",popularity:"High"},
+
+/* ================= FOOD ================= */
+
+{name:"Gummy Bear Squishy",value:85,demand:"High",popularity:"High"},
+{name:"Mochi Cat",value:75,demand:"High",popularity:"High"},
+{name:"Kawaii Donut",value:70,demand:"Medium",popularity:"High"},
+{name:"Strawberry Milk",value:65,demand:"Medium",popularity:"High"},
+{name:"Cloud Squishy",value:60,demand:"Medium",popularity:"High"},
+{name:"Panda Bun",value:58,demand:"Medium",popularity:"High"},
+{name:"Avocado Toast",value:55,demand:"High",popularity:"Medium"},
+{name:"Axolotl Squishy",value:52,demand:"High",popularity:"High"},
+{name:"Cinnabun Squishy",value:50,demand:"Medium",popularity:"High"},
+{name:"Rainbow Cake",value:48,demand:"Medium",popularity:"Medium"},
+{name:"Chocolate Donut",value:46,demand:"Medium",popularity:"High"},
+{name:"Blueberry Muffin",value:44,demand:"Medium",popularity:"Medium"},
+{name:"Frog Mochi",value:42,demand:"High",popularity:"High"},
+{name:"Boba Cup",value:40,demand:"High",popularity:"High"},
+{name:"Duckie Squishy",value:38,demand:"Medium",popularity:"High"},
+{name:"Pink Bunny",value:36,demand:"Medium",popularity:"Medium"},
+{name:"Cat Paw",value:35,demand:"High",popularity:"High"},
+{name:"Puppy Squish",value:34,demand:"Medium",popularity:"Medium"},
+{name:"Turtle Mochi",value:33,demand:"Medium",popularity:"Medium"},
+{name:"Watermelon Slice",value:32,demand:"Medium",popularity:"Medium"},
+{name:"Pineapple Squish",value:31,demand:"Medium",popularity:"Medium"},
+{name:"Peach Ring",value:30,demand:"Medium",popularity:"Medium"},
+{name:"Orange Slice",value:28,demand:"Low",popularity:"Medium"},
+{name:"Lemon Mochi",value:26,demand:"Low",popularity:"Medium"},
+{name:"Grape Jelly",value:25,demand:"Medium",popularity:"Medium"},
+{name:"Cherry Pop",value:24,demand:"Medium",popularity:"Medium"},
+{name:"Blue Raspberry",value:23,demand:"Low",popularity:"Medium"},
+{name:"Apple Slice",value:22,demand:"Low",popularity:"Medium"},
+{name:"Mango Squish",value:21,demand:"Medium",popularity:"Medium"},
+{name:"Pizza Slice",value:34,demand:"High",popularity:"High"},
+{name:"Burger Squish",value:32,demand:"Medium",popularity:"High"},
+{name:"Fries Squish",value:30,demand:"High",popularity:"High"},
+{name:"Taco Squish",value:28,demand:"Medium",popularity:"High"},
+{name:"Hotdog Squish",value:25,demand:"Medium",popularity:"Medium"},
+{name:"Sushi Squish",value:24,demand:"High",popularity:"High"},
+{name:"Ramen Squish",value:23,demand:"Medium",popularity:"High"},
+{name:"Waffle Squish",value:22,demand:"Medium",popularity:"Medium"},
+{name:"Pancake Squish",value:21,demand:"Low",popularity:"Medium"},
+
+/* ================= ANIMALS ================= */
+
+{name:"Sleepy Cat",value:50,demand:"High",popularity:"High"},
+{name:"Sleepy Bear",value:48,demand:"Medium",popularity:"High"},
+{name:"Sleepy Bunny",value:46,demand:"Medium",popularity:"High"},
+{name:"Sleepy Frog",value:44,demand:"High",popularity:"High"},
+{name:"Sleepy Duck",value:42,demand:"Medium",popularity:"Medium"},
+{name:"Sleepy Panda",value:40,demand:"Medium",popularity:"High"},
+{name:"Sleepy Axolotl",value:38,demand:"High",popularity:"High"},
+{name:"Sleepy Puppy",value:36,demand:"Medium",popularity:"Medium"},
+{name:"Sleepy Koala",value:34,demand:"Low",popularity:"Medium"},
+{name:"Sleepy Penguin",value:32,demand:"Low",popularity:"Medium"},
+
+{name:"Strawberry Bear",value:45,demand:"High",popularity:"High"},
+{name:"Blueberry Bear",value:43,demand:"Medium",popularity:"High"},
+{name:"Chocolate Bear",value:41,demand:"Medium",popularity:"High"},
+{name:"Vanilla Bear",value:39,demand:"Medium",popularity:"Medium"},
+{name:"Mint Bear",value:37,demand:"Low",popularity:"Medium"},
+{name:"Caramel Bear",value:35,demand:"Medium",popularity:"Medium"},
+{name:"Cotton Candy Bear",value:44,demand:"High",popularity:"High"},
+{name:"Grape Bear",value:33,demand:"Low",popularity:"Medium"},
+{name:"Lemon Bear",value:31,demand:"Low",popularity:"Medium"},
+{name:"Watermelon Bear",value:30,demand:"Medium",popularity:"Medium"},
+
+/* ================= HEARTS ================= */
+
+{name:"Pink Heart",value:40,demand:"High",popularity:"High"},
+{name:"Blue Heart",value:38,demand:"Medium",popularity:"High"},
+{name:"Purple Heart",value:37,demand:"High",popularity:"High"},
+{name:"Red Heart",value:36,demand:"High",popularity:"High"},
+{name:"Rainbow Heart",value:35,demand:"High",popularity:"High"},
+{name:"Glitter Heart",value:33,demand:"Medium",popularity:"High"},
+{name:"Tiny Heart",value:25,demand:"Low",popularity:"Medium"},
+{name:"Melty Heart",value:24,demand:"Low",popularity:"Medium"},
+{name:"Cloud Heart",value:23,demand:"Medium",popularity:"Medium"},
+{name:"Smiley Heart",value:21,demand:"Low",popularity:"High"},
+
+/* ================= FROGS ================= */
+
+{name:"Froggo",value:35,demand:"High",popularity:"High"},
+{name:"Boba Frog",value:34,demand:"High",popularity:"High"},
+{name:"Strawberry Frog",value:32,demand:"Medium",popularity:"High"},
+{name:"Pizza Frog",value:30,demand:"Medium",popularity:"High"},
+{name:"Mushroom Frog",value:29,demand:"High",popularity:"High"},
+{name:"Derpy Frog",value:27,demand:"High",popularity:"High"},
+{name:"Cursed Frog",value:22,demand:"Medium",popularity:"High"},
+{name:"Off Brand Frog",value:15,demand:"Low",popularity:"Medium"},
+{name:"Definitely A Frog",value:12,demand:"Low",popularity:"High"},
+
+/* ================= MINI ================= */
+
+{name:"Mini Needoh",value:45,demand:"High",popularity:"High"},
+{name:"Mini Cloud Needoh",value:43,demand:"High",popularity:"High"},
+{name:"Mini Rainbow Needoh",value:41,demand:"High",popularity:"High"},
+{name:"Mini Grape Needoh",value:39,demand:"Medium",popularity:"High"},
+{name:"Mini Strawberry Needoh",value:38,demand:"High",popularity:"High"},
+{name:"Mini Galaxy Needoh",value:37,demand:"High",popularity:"High"},
+{name:"Mini Moon Needoh",value:35,demand:"Medium",popularity:"High"},
+{name:"Mini Aurora Needoh",value:34,demand:"High",popularity:"High"},
+{name:"Mini Ocean Needoh",value:32,demand:"Medium",popularity:"Medium"},
+{name:"Mini Crystal Needoh",value:30,demand:"Medium",popularity:"Medium"},
+{name:"Mini Gummy Bear",value:30,demand:"Medium",popularity:"High"},
+{name:"Mini Mochi Cat",value:35,demand:"High",popularity:"High"},
+{name:"Mini Panda Bun",value:32,demand:"Medium",popularity:"High"},
+{name:"Mini Axolotl",value:36,demand:"High",popularity:"High"},
+{name:"Mini Frog",value:28,demand:"High",popularity:"High"},
+{name:"Mini Bunny",value:30,demand:"High",popularity:"High"},
+{name:"Mini Bear",value:27,demand:"Medium",popularity:"High"},
+{name:"Mini Boba",value:31,demand:"High",popularity:"High"},
+
+/* ================= SMALL ================= */
+
+{name:"Small Cloud Needoh",value:52,demand:"High",popularity:"High"},
+{name:"Small Rainbow Needoh",value:49,demand:"High",popularity:"High"},
+{name:"Small Galaxy Needoh",value:47,demand:"High",popularity:"High"},
+{name:"Small Grape Needoh",value:44,demand:"Medium",popularity:"High"},
+{name:"Small Strawberry Needoh",value:42,demand:"High",popularity:"High"},
+{name:"Small Moon Needoh",value:40,demand:"Medium",popularity:"High"},
+{name:"Small Blueberry Needoh",value:38,demand:"Medium",popularity:"Medium"},
+{name:"Small Aurora Needoh",value:36,demand:"High",popularity:"High"},
+{name:"Small Crystal Needoh",value:34,demand:"Medium",popularity:"Medium"},
+{name:"Small Gummy Bear",value:35,demand:"Medium",popularity:"High"},
+{name:"Small Mochi Cat",value:40,demand:"High",popularity:"High"},
+{name:"Small Panda Bun",value:36,demand:"Medium",popularity:"High"},
+{name:"Small Axolotl",value:42,demand:"High",popularity:"High"},
+{name:"Small Frog",value:30,demand:"High",popularity:"High"},
+{name:"Small Bunny",value:33,demand:"High",popularity:"High"},
+{name:"Small Bear",value:29,demand:"Medium",popularity:"High"},
+{name:"Small Boba",value:34,demand:"High",popularity:"High"},
+
+/* ================= CLOUDS ================= */
+
+{name:"Rainbow Cloud",value:42,demand:"High",popularity:"High"},
+{name:"Pastel Cloud",value:40,demand:"High",popularity:"High"},
+{name:"Blue Cloud",value:38,demand:"Medium",popularity:"High"},
+{name:"Pink Cloud",value:37,demand:"High",popularity:"High"},
+{name:"Purple Cloud",value:36,demand:"Medium",popularity:"High"},
+{name:"Star Cloud",value:35,demand:"Medium",popularity:"High"},
+{name:"Magic Cloud",value:34,demand:"High",popularity:"High"},
+{name:"Cloudy Star",value:34,demand:"Medium",popularity:"Medium"},
+{name:"Sleepy Cloud",value:32,demand:"Medium",popularity:"High"},
+
+/* ================= SPACE ================= */
+
+{name:"Galaxy Star",value:45,demand:"High",popularity:"High"},
+{name:"Moon Mochi",value:40,demand:"Medium",popularity:"High"},
+{name:"Sun Squish",value:35,demand:"Medium",popularity:"Medium"},
+{name:"Rainbow Star",value:33,demand:"High",popularity:"High"},
+{name:"Purple Planet",value:31,demand:"Medium",popularity:"Medium"},
+{name:"Cosmic Blob",value:29,demand:"Low",popularity:"High"},
+{name:"Alien Squish",value:28,demand:"Medium",popularity:"High"},
+{name:"Rocket Mochi",value:26,demand:"Low",popularity:"Medium"},
+{name:"Space Slime",value:25,demand:"Low",popularity:"Medium"},
+
+/* ================= TINY ================= */
+
+{name:"Tiny Needoh",value:25,demand:"Medium",popularity:"High"},
+{name:"Tiny Cloud",value:23,demand:"Medium",popularity:"High"},
+{name:"Tiny Rainbow",value:22,demand:"Medium",popularity:"High"},
+{name:"Tiny Gummy Bear",value:18,demand:"Medium",popularity:"Medium"},
+{name:"Tiny Mochi Cat",value:20,demand:"Medium",popularity:"High"},
+{name:"Tiny Panda Bun",value:19,demand:"Low",popularity:"Medium"},
+{name:"Tiny Axolotl",value:22,demand:"Medium",popularity:"High"},
+{name:"Tiny Frog",value:17,demand:"Medium",popularity:"Medium"},
+{name:"Tiny Bunny",value:18,demand:"Medium",popularity:"Medium"},
+{name:"Tiny Bear",value:17,demand:"Low",popularity:"Medium"},
+{name:"Tiny Boba",value:20,demand:"Medium",popularity:"High"},
+
+/* ================= OFF BRAND ================= */
+
+{name:"Off Brand Needoh",value:30,demand:"Low",popularity:"High"},
+{name:"Fake Needoh Blob",value:25,demand:"Low",popularity:"Medium"},
+{name:"Definitely Not Needoh",value:20,demand:"Low",popularity:"High"},
+{name:"Needohn't",value:18,demand:"Low",popularity:"High"},
+{name:"Needuh",value:17,demand:"Low",popularity:"High"},
+{name:"NeeDohn't Touch It",value:15,demand:"Low",popularity:"High"},
+{name:"Wish.com Needoh",value:10,demand:"Low",popularity:"High"},
+{name:"Off Brand Rainbow Needoh",value:28,demand:"Low",popularity:"High"},
+{name:"Fake Galaxy Needoh",value:27,demand:"Low",popularity:"High"},
+{name:"Bootleg Moon Blob",value:24,demand:"Low",popularity:"Medium"},
+{name:"Knockoff Galaxy Blob",value:22,demand:"Low",popularity:"High"},
+{name:"Fake Aurora Blob",value:21,demand:"Low",popularity:"Medium"},
+{name:"Off Brand Mochi",value:22,demand:"Low",popularity:"Medium"},
+{name:"Knockoff Cat Paw",value:21,demand:"Low",popularity:"High"},
+{name:"Fake Boba Squish",value:20,demand:"Low",popularity:"Medium"},
+{name:"Definitely Original Squish",value:19,demand:"Low",popularity:"High"},
+{name:"Off Brand Pizza",value:16,demand:"Low",popularity:"Medium"},
+{name:"Dollar Store Cloud",value:14,demand:"Low",popularity:"Medium"},
+{name:"Dollar Store Squish",value:12,demand:"Low",popularity:"Low"},
+
+/* ================= EXTRA ================= */
+
+{name:"Cinnabun Squishy",value:50,demand:"Medium",popularity:"High"},
+{name:"Sleepy Cat",value:50,demand:"High",popularity:"High"},
+{name:"Pink Heart",value:40,demand:"High",popularity:"High"},
+{name:"Blue Heart",value:38,demand:"Medium",popularity:"High"},
+{name:"Purple Heart",value:37,demand:"High",popularity:"High"},
+{name:"Red Heart",value:36,demand:"High",popularity:"High"},
+{name:"Rainbow Heart",value:35,demand:"High",popularity:"High"},
+{name:"Glitter Heart",value:33,demand:"Medium",popularity:"High"},
+
+/* ================= BUTTER ================= */
+
+{name:"Crunchy Butter",value:30,demand:"High",popularity:"High"},
+{name:"Cream Butter",value:29,demand:"High",popularity:"High"},
+{name:"Foam Butter",value:28,demand:"Medium",popularity:"High"},
+{name:"Blue Butter",value:27,demand:"Medium",popularity:"High"},
+{name:"Blue Butter Cream",value:26,demand:"Medium",popularity:"High"},
+{name:"Foam Blue Butter",value:25,demand:"Medium",popularity:"High"},
+{name:"Butter",value:24,demand:"Medium",popularity:"Medium"},
+{name:"Pink Butter",value:23,demand:"Medium",popularity:"High"},
+{name:"Pink Crunchy Butter",value:22,demand:"High",popularity:"High"},
+{name:"Pink Cream Butter",value:21,demand:"Medium",popularity:"High"},
+{name:"Pink Foam Butter",value:20,demand:"Medium",popularity:"High"},
+
+/* ================= ICE CUBES ================= */
+
+{name:"Pink Needoh Ice Cube",value:45,demand:"High",popularity:"High"},
+{name:"Blue Needoh Ice Cube",value:44,demand:"High",popularity:"High"},
+{name:"Purple Needoh Ice Cube",value:43,demand:"High",popularity:"High"},
+{name:"Giant Iceberg Needoh",value:100,demand:"Very High",popularity:"Very High"},
+
+/* ================= GIANT EXTRAS ================= */
+
+{name:"Giant Highland Cow",value:95,demand:"High",popularity:"High"},
+{name:"Giant Shark",value:90,demand:"High",popularity:"High"},
+{name:"Giant Butter",value:85,demand:"High",popularity:"High"},
+{name:"Giant Banana",value:80,demand:"Medium",popularity:"High"},
+{name:"Giant Ice Cream",value:78,demand:"High",popularity:"High"},
+{name:"Giant Strawberry",value:75,demand:"High",popularity:"High"},
+{name:"Giant Cookie",value:72,demand:"High",popularity:"High"},
+{name:"Giant Ice",value:70,demand:"Medium",popularity:"High"}
+
 ];
+
+
+/* =========================================================
+   TRADE CALCULATOR
+========================================================= */
+
+let yourItems = [];
+let theirItems = [];
+
+
+/* =========================================================
+   VALUE LIST
+========================================================= */
+
+function showValues() {
+
+  const search =
+    document.getElementById("search").value.toLowerCase();
+
+  const list =
+    document.getElementById("valueList");
+
+  list.innerHTML = "";
+
+  const filtered = items
+    .filter(item =>
+      item.name.toLowerCase().includes(search)
+    )
+    .sort((a,b) => b.value - a.value);
+
+  filtered.forEach(item => {
+
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+      <td class="${item.demand === "Extreme" ? "rare" : ""}">
+        ${item.name}
+      </td>
+
+      <td>${item.value}</td>
+
+      <td>${item.demand}</td>
+
+      <td>${item.popularity}</td>
+    `;
+
+    list.appendChild(row);
+
+  });
+}
+
+
+/* =========================================================
+   DROPDOWNS
+========================================================= */
+
+function loadItems() {
+
+  const your =
+    document.getElementById("yourItem");
+
+  const their =
+    document.getElementById("theirItem");
+
+  your.innerHTML =
+    `<option value="">Add an item...</option>`;
+
+  their.innerHTML =
+    `<option value="">Add an item...</option>`;
+
+  const sorted =
+    [...items].sort((a,b) => b.value - a.value);
+
+  sorted.forEach((item,index) => {
+
+    your.innerHTML += `
+      <option value="${index}">
+        ${item.name} — ${item.value}
+      </option>
+    `;
+
+    their.innerHTML += `
+      <option value="${index}">
+        ${item.name} — ${item.value}
+      </option>
+    `;
+
+  });
+
+  window.sortedItems = sorted;
+}
+
+
+/* =========================================================
+   ADD YOUR ITEM
+========================================================= */
+
+function addYour() {
+
+  const select =
+    document.getElementById("yourItem");
+
+  if (select.value === "") return;
+
+  yourItems.push(
+    window.sortedItems[select.value]
+  );
+
+  select.value = "";
+
+  update();
+}
+
+
+/* =========================================================
+   ADD THEIR ITEM
+========================================================= */
+
+function addTheir() {
+
+  const select =
+    document.getElementById("theirItem");
+
+  if (select.value === "") return;
+
+  theirItems.push(
+    window.sortedItems[select.value]
+  );
+
+  select.value = "";
+
+  update();
+}
+
+
+/* =========================================================
+   REMOVE YOUR ITEM
+========================================================= */
+
+function removeYour(index) {
+
+  yourItems.splice(index,1);
+
+  update();
+}
+
+
+/* =========================================================
+   REMOVE THEIR ITEM
+========================================================= */
+
+function removeTheir(index) {
+
+  theirItems.splice(index,1);
+
+  update();
+}
+
+
+/* =========================================================
+   UPDATE EVERYTHING
+========================================================= */
+
+function update() {
+
+  const yourList =
+    document.getElementById("yourList");
+
+  const theirList =
+    document.getElementById("theirList");
+
+  yourList.innerHTML = "";
+  theirList.innerHTML = "";
+
+
+  /* YOUR ITEMS */
+
+  yourItems.forEach((item,index) => {
+
+    yourList.innerHTML += `
+      <li>
+
+        ${item.name}
+
+        <button
+          class="removeBtn"
+          onclick="removeYour(${index})"
+        >
+          ×
+        </button>
+
+        <span class="itemValue">
+          ${item.value}
+        </span>
+
+      </li>
+    `;
+
+  });
+
+
+  /* THEIR ITEMS */
+
+  theirItems.forEach((item,index) => {
+
+    theirList.innerHTML += `
+      <li>
+
+        ${item.name}
+
+        <button
+          class="removeBtn"
+          onclick="removeTheir(${index})"
+        >
+          ×
+        </button>
+
+        <span class="itemValue">
+          ${item.value}
+        </span>
+
+      </li>
+    `;
+
+  });
+
+
+  /* TOTALS */
+
+  const yourTotal =
+    yourItems.reduce(
+      (sum,item) => sum + item.value,
+      0
+    );
+
+  const theirTotal =
+    theirItems.reduce(
+      (sum,item) => sum + item.value,
+      0
+    );
+
+
+  document.getElementById("yourTotal")
+    .textContent = yourTotal;
+
+  document.getElementById("theirTotal")
+    .textContent = theirTotal;
+
+
+  updateResult(yourTotal,theirTotal);
+
+}
+
+
+/* =========================================================
+   WIN / FAIR / LOSE
+========================================================= */
+
+function updateResult(yourTotal,theirTotal) {
+
+  const result =
+    document.getElementById("result");
+
+  const bar =
+    document.getElementById("tradeBarFill");
+
+
+  if (yourTotal === 0 && theirTotal === 0) {
+
+    result.textContent =
+      "Add items to calculate the trade";
+
+    result.className =
+      "result neutral";
+
+    bar.style.width = "50%";
+
+    return;
+  }
+
+
+  if (yourTotal === theirTotal) {
+
+    result.textContent =
+      "⚖️ FAIR TRADE";
+
+    result.className =
+      "result fair";
+
+    bar.style.width = "50%";
+
+    return;
+  }
+
+
+  if (theirTotal > yourTotal) {
+
+    const difference =
+      theirTotal - yourTotal;
+
+    result.textContent =
+      `🟢 WIN — You get ${difference} more value`;
+
+    result.className =
+      "result win";
+
+
+    const percentage =
+      Math.min(
+        90,
+        50 + (difference / Math.max(theirTotal,1)) * 50
+      );
+
+    bar.style.width =
+      percentage + "%";
+
+  }
+
+  else {
+
+    const difference =
+      yourTotal - theirTotal;
+
+    result.textContent =
+      `🔴 LOSE — You give ${difference} more value`;
+
+    result.className =
+      "result lose";
+
+
+    const percentage =
+      Math.max(
+        10,
+        50 - (difference / Math.max(yourTotal,1)) * 50
+      );
+
+    bar.style.width =
+      percentage + "%";
+
+  }
+
+}
+
+
+/* =========================================================
+   START WEBSITE
+========================================================= */
+
+loadItems();
+showValues();
+update();
+
+</script>
+
+</body>
+</html>
